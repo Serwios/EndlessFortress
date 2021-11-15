@@ -1,3 +1,8 @@
 2. Add dash skill 
 3. Add background
 4. Add start skripted scene
+5. Add some random platforms in generator
+	For pillars and more smaller platforms
+	we need flexible algorithm
+	If platform is x smaller -> then max dist. 
+	between smaller should be in x smaller

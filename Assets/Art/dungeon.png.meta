@@ -11,6 +11,15 @@ TextureImporter:
   - first:
       213: 6742715835338597436
     second: dungeon_2
+  - first:
+      213: -7229037912106761437
+    second: dungeon_3
+  - first:
+      213: 3416553326990366869
+    second: dungeon_5
+  - first:
+      213: 7406941843746067170
+    second: dungeon_6
   externalObjects: {}
   serializedVersion: 11
   mipmaps:
