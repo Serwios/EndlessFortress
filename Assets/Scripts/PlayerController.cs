@@ -23,7 +23,6 @@ public class PlayerController : MonoBehaviour {
 
     void Update() {
     	grounded = Physics2D.IsTouchingLayers(myCollider, whatIsGround);
-
         myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
 
         if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
