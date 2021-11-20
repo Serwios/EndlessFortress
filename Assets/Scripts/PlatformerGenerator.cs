@@ -49,7 +49,7 @@ public class PlatformerGenerator : MonoBehaviour {
 
     		distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
             
-            //Fix limit for y; Y CAN`T be -> ~
+            //Fix limit for y, because platform goes under screen 
             transform.position = new Vector3(
     		  (transform.position.x + platformWidth + distanceBetween), 
     		  transform.position.y + randomYKoef, 
