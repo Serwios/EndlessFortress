@@ -10,8 +10,12 @@ public class PlatformDestroyer : MonoBehaviour {
     }
 
     void Update() {
-        if(transform.position.x < platformDestructionPoint.transform.position.x) {
+        destroyLastPlatform();
+    }
+
+   	private void destroyLastPlatform() {
+   		if(transform.position.x < platformDestructionPoint.transform.position.x) {
         	Destroy(gameObject);
         }
-    }
+   	}
 }

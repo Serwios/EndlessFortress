@@ -15,31 +15,44 @@ public class PlatformerGenerator : MonoBehaviour {
 	private float randomYKoef;
 	private System.Random random = new System.Random();
     private int randomElementIndex;
+    private float absoluteYPosition;
 
     private float tempdistanceBetweenMax;
     private float tempdistanceBetweenMin;
+
+    private float LOWER_Y_BORDER_FOR_PLATFORM_GENERATION = -5.2F;
 
     void Start() {
         platformWidth = gameObjects[0].GetComponent<BoxCollider2D>().size.x;
     }
 
     void Update() {
-    	if(transform.position.x < generationPoint.position.x) {
+    	generatePlatform();
+    }
+
+    private void generatePlatform() {
+        if(transform.position.x < generationPoint.position.x) {
             randomYKoef = (float) Random.Range(-0.3f, 0.3f);
             randomElementIndex = Random.Range(0, gameObjects.Count);
             GameObject selectedObject = gameObjects[randomElementIndex];
          
-    		distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
+            distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
+            absoluteYPosition = transform.position.y + randomYKoef;
+
+            do{
+                absoluteYPosition = transform.position.y + randomYKoef;
+            }while(absoluteYPosition < LOWER_Y_BORDER_FOR_PLATFORM_GENERATION);
+
+            Debug.Log("y position of platform: " + absoluteYPosition);
+
             transform.position = new Vector3(
-    		  (transform.position.x + platformWidth + distanceBetween), 
-    		  transform.position.y + randomYKoef, 
-    		  transform.position.z);
+              (transform.position.x + platformWidth + distanceBetween), 
+              absoluteYPosition, 
+              transform.position.z);
 
-            Debug.Log("x:"+transform.position.x + ", y:"+transform.position.y + ", plw:"+platformWidth + ", db:"+distanceBetween + ", z:"+transform.position.z + ", rk: "+randomYKoef);
-            Debug.Log("distance: " + (int) platformWidth + distanceBetween);
-
+            Debug.Log("distance btw: " + (int) platformWidth + distanceBetween);
     
-    		Instantiate (selectedObject, transform.position, transform.rotation);
-    	}
+            Instantiate(selectedObject, transform.position, transform.rotation);
+        }
     }
 }

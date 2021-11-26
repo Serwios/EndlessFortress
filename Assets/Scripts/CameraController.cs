@@ -14,6 +14,10 @@ public class CameraController : MonoBehaviour {
     }
 
     void Update() {
+    	chasingCharacter();
+    }
+
+    private void chasingCharacter() {
     	distanceToMove = thePlayer.transform.position.x - lastPlayerPosition.x;
     	transform.position = new Vector3(
     		transform.position.x + distanceToMove, 
