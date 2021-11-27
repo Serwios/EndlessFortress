@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlayerController : MonoBehaviour {
 	public float moveSpeed;
@@ -23,6 +24,8 @@ public class PlayerController : MonoBehaviour {
     private float dashTimeLeft;
     private float lastDash = -100;
 
+    private Vector3 playerPosition;
+
     void Start() {
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
@@ -32,6 +35,7 @@ public class PlayerController : MonoBehaviour {
     void Update() {
     	checkPossibilityToJump();
     	checkPossibilityToDash();
+    	checkPossibilityToDie();
     }
 
     private void checkPossibilityToDash() {
@@ -57,11 +61,17 @@ public class PlayerController : MonoBehaviour {
     	}
     }
 
+    private void AttemptToDash() {
+    	isDashing = true;
+    	dashTimeLeft = dashtime;
+    	lastDash = Time.time;
+    }
+
     private void checkPossibilityToJump() {
 		grounded = Physics2D.IsTouchingLayers(myCollider, whatIsGround);
         myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
 
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
+        if(Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0)) {
         	if(grounded) {
         		myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
         	}
@@ -71,9 +81,13 @@ public class PlayerController : MonoBehaviour {
         myAnimator.SetBool("Grounded", grounded);
     }
 
-    private void AttemptToDash() {
-    	isDashing = true;
-    	dashTimeLeft = dashtime;
-    	lastDash = Time.time;
+    private void checkPossibilityToDie() {
+    	playerPosition = GameObject.Find("Player").transform.position;
+
+    	if (playerPosition.y < -12.5) {
+    		SceneManager.LoadScene("SampleScene");
+    	}
     }
+
+ 	
 }

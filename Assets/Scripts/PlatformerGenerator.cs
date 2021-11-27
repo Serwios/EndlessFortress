@@ -34,7 +34,8 @@ public class PlatformerGenerator : MonoBehaviour {
         if(transform.position.x < generationPoint.position.x) {
             randomYKoef = (float) Random.Range(-0.3f, 0.3f);
             randomElementIndex = Random.Range(0, gameObjects.Count);
-            GameObject selectedObject = gameObjects[randomElementIndex];
+
+            GameObject randomlySelectedObject = gameObjects[randomElementIndex];
          
             distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
             absoluteYPosition = transform.position.y + randomYKoef;
@@ -52,7 +53,7 @@ public class PlatformerGenerator : MonoBehaviour {
 
             Debug.Log("distance btw: " + (int) platformWidth + distanceBetween);
     
-            Instantiate(selectedObject, transform.position, transform.rotation);
+            Instantiate(randomlySelectedObject, transform.position, transform.rotation);
         }
     }
 }
