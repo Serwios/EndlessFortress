@@ -11,6 +11,7 @@ public class PlayerController : MonoBehaviour {
 
 	public bool grounded;
 	public LayerMask whatIsGround;
+	public LayerMask coinLayer;
 
 	private Collider2D myCollider;
 
@@ -25,6 +26,9 @@ public class PlayerController : MonoBehaviour {
     private float lastDash = -100;
 
     private Vector3 playerPosition;
+    private bool isTouchingCoin;
+
+    private int numOfCollectedCoins;
 
     void Start() {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -36,6 +40,7 @@ public class PlayerController : MonoBehaviour {
     	checkPossibilityToJump();
     	checkPossibilityToDash();
     	checkPossibilityToDie();
+    	checkPossibilityToTakeCoin();
     }
 
     private void checkPossibilityToDash() {
@@ -89,5 +94,12 @@ public class PlayerController : MonoBehaviour {
     	}
     }
 
- 	
+    private void checkPossibilityToTakeCoin() {
+    	isTouchingCoin = Physics2D.IsTouchingLayers(myCollider, coinLayer);
+    	if (isTouchingCoin) {
+    		numOfCollectedCoins++;
+    	}
+
+    	Debug.Log("numOfCoins: " + numOfCollectedCoins);
+    }
 }
