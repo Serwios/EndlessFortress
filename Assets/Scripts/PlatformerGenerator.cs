@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class PlatformerGenerator : MonoBehaviour {
     public List<GameObject> gameObjects = new List<GameObject>();
+    public GameObject coinObject;
 
 	public Transform generationPoint;
 	public float distanceBetween;
@@ -21,6 +22,10 @@ public class PlatformerGenerator : MonoBehaviour {
     private float tempdistanceBetweenMin;
 
     private float LOWER_Y_BORDER_FOR_PLATFORM_GENERATION = -5.2F;
+
+    private int randomPossilityToCreateCoin;
+	private float HIGHER_Y_BORDER_FOR_COIN_GENERATION = 4.0F;
+	private float LOWER_Y_BORDER_FOR_COIN_GENERATION = -4.0F;
 
     void Start() {
         platformWidth = gameObjects[0].GetComponent<BoxCollider2D>().size.x;
@@ -42,18 +47,16 @@ public class PlatformerGenerator : MonoBehaviour {
 
             do{
                 absoluteYPosition = transform.position.y + randomYKoef;
-            }while(absoluteYPosition < LOWER_Y_BORDER_FOR_PLATFORM_GENERATION);
-
-            Debug.Log("y position of platform: " + absoluteYPosition);
+            }while(
+            	absoluteYPosition < LOWER_Y_BORDER_FOR_PLATFORM_GENERATION);
 
             transform.position = new Vector3(
               (transform.position.x + platformWidth + distanceBetween), 
               absoluteYPosition, 
               transform.position.z);
 
-            Debug.Log("distance btw: " + (int) platformWidth + distanceBetween);
-    
             Instantiate(randomlySelectedObject, transform.position, transform.rotation);
+            Instantiate(coinObject, transform.position, transform.rotation);
         }
-    }
+    } 
 }

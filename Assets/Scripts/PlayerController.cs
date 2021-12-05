@@ -28,7 +28,7 @@ public class PlayerController : MonoBehaviour {
     private Vector3 playerPosition;
     private bool isTouchingCoin;
 
-    private int numOfCollectedCoins;
+    private int numOfCollectedCoins = 0;
 
     void Start() {
         myRigidbody = GetComponent<Rigidbody2D>();
