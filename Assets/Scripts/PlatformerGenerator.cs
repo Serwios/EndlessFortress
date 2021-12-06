@@ -22,8 +22,10 @@ public class PlatformerGenerator : MonoBehaviour {
     private float tempdistanceBetweenMin;
 
     private float LOWER_Y_BORDER_FOR_PLATFORM_GENERATION = -5.2F;
+    private float HIGHER_Y_BORDER_FOR_PLATFORM_GENERATION = 2.0F;
 
     private int randomPossilityToCreateCoin;
+
 	private float HIGHER_Y_BORDER_FOR_COIN_GENERATION = 4.0F;
 	private float LOWER_Y_BORDER_FOR_COIN_GENERATION = -4.0F;
 
@@ -47,8 +49,7 @@ public class PlatformerGenerator : MonoBehaviour {
 
             do{
                 absoluteYPosition = transform.position.y + randomYKoef;
-            }while(
-            	absoluteYPosition < LOWER_Y_BORDER_FOR_PLATFORM_GENERATION);
+            }while(isPointNotInValidSquare(absoluteYPosition));
 
             transform.position = new Vector3(
               (transform.position.x + platformWidth + distanceBetween), 
@@ -59,4 +60,10 @@ public class PlatformerGenerator : MonoBehaviour {
             Instantiate(coinObject, transform.position, transform.rotation);
         }
     } 
+
+    private bool isPointNotInValidSquare(float absoluteYPosition) {
+    	return absoluteYPosition < LOWER_Y_BORDER_FOR_PLATFORM_GENERATION ||
+            	absoluteYPosition > HIGHER_Y_BORDER_FOR_PLATFORM_GENERATION;
+    }
+
 }
