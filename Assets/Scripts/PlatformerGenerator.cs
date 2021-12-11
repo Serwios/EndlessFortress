@@ -21,13 +21,11 @@ public class PlatformerGenerator : MonoBehaviour {
     private float tempdistanceBetweenMax;
     private float tempdistanceBetweenMin;
 
-    private float LOWER_Y_BORDER_FOR_PLATFORM_GENERATION = -5.2F;
-    private float HIGHER_Y_BORDER_FOR_PLATFORM_GENERATION = 2.0F;
+    private float LOWER_Y_BORDER = -5.2F;
+    private float HIGHER_Y_BORDER = 2.3F;
 
     private int randomPossilityToCreateCoin;
-
-	private float HIGHER_Y_BORDER_FOR_COIN_GENERATION = 4.0F;
-	private float LOWER_Y_BORDER_FOR_COIN_GENERATION = -4.0F;
+    private int oddsOfCreation = 3;
 
     void Start() {
         platformWidth = gameObjects[0].GetComponent<BoxCollider2D>().size.x;
@@ -38,8 +36,8 @@ public class PlatformerGenerator : MonoBehaviour {
     }
 
     private void generatePlatform() {
-        if(transform.position.x < generationPoint.position.x) {
-            randomYKoef = (float) Random.Range(-0.3f, 0.3f);
+        if (transform.position.x < generationPoint.position.x) {
+            randomYKoef = (float) Random.Range(-0.5f, 0.5f);
             randomElementIndex = Random.Range(0, gameObjects.Count);
 
             GameObject randomlySelectedObject = gameObjects[randomElementIndex];
@@ -49,7 +47,7 @@ public class PlatformerGenerator : MonoBehaviour {
 
             do{
                 absoluteYPosition = transform.position.y + randomYKoef;
-            }while(isPointNotInValidSquare(absoluteYPosition));
+            } while(isPointNotInValidSquare(absoluteYPosition));
 
             transform.position = new Vector3(
               (transform.position.x + platformWidth + distanceBetween), 
@@ -57,13 +55,15 @@ public class PlatformerGenerator : MonoBehaviour {
               transform.position.z);
 
             Instantiate(randomlySelectedObject, transform.position, transform.rotation);
-            Instantiate(coinObject, transform.position, transform.rotation);
+            
+            if (randomElementIndex == oddsOfCreation) {
+            	Instantiate(coinObject, transform.position, transform.rotation);
+            }
         }
     } 
 
     private bool isPointNotInValidSquare(float absoluteYPosition) {
-    	return absoluteYPosition < LOWER_Y_BORDER_FOR_PLATFORM_GENERATION ||
-            	absoluteYPosition > HIGHER_Y_BORDER_FOR_PLATFORM_GENERATION;
+    	return absoluteYPosition < LOWER_Y_BORDER ||
+            	absoluteYPosition > HIGHER_Y_BORDER;
     }
-
 }
