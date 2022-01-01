@@ -37,15 +37,13 @@ public class PlatformerGenerator : MonoBehaviour {
 
     private void generatePlatform() {
         if (transform.position.x < generationPoint.position.x) {
-            randomYKoef = (float) Random.Range(-0.5f, 0.5f);
             randomElementIndex = Random.Range(0, gameObjects.Count);
-
             GameObject randomlySelectedObject = gameObjects[randomElementIndex];
-         
             distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
-            absoluteYPosition = transform.position.y + randomYKoef;
 
+            //potentionally infinite loop
             do{
+                randomYKoef = (float) Random.Range(-0.5f, 0.5f);
                 absoluteYPosition = transform.position.y + randomYKoef;
             } while(isPointNotInValidSquare(absoluteYPosition));
 

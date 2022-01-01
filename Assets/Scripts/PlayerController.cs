@@ -2,6 +2,9 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using System.Runtime.Serialization.Formatters.Binary;
+using System.Runtime.Serialization;
+using System.IO;
 
 public class PlayerController : MonoBehaviour {
 	public float moveSpeed;
@@ -28,9 +31,11 @@ public class PlayerController : MonoBehaviour {
     private Vector3 playerPosition;
     private bool isTouchingCoin;
 
-    private int numOfCollectedCoins = 0;
+    public static int numOfCollectedCoins;
 
     void Start() {
+        numOfCollectedCoins = 0;
+
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
         myAnimator = GetComponent<Animator>();
@@ -100,6 +105,6 @@ public class PlayerController : MonoBehaviour {
     		numOfCollectedCoins++;
     	}
 
-    	Debug.Log("numOfCoins: " + numOfCollectedCoins);
+    	//Debug.Log("numOfCoins: " + numOfCollectedCoins);
     }
 }
