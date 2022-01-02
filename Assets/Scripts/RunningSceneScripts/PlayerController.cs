@@ -5,6 +5,7 @@ using UnityEngine.SceneManagement;
 using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.IO;
+using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
@@ -33,6 +34,9 @@ public class PlayerController : MonoBehaviour
     private bool isTouchingCoin;
 
     public static int numOfCollectedCoins;
+    public static int coinRecord;
+    public Text recordText;
+    public float timeStart = 5;
 
     void Start()
     {
@@ -112,7 +116,24 @@ public class PlayerController : MonoBehaviour
 
         if (playerPosition.y < -12.5)
         {
-            SceneManager.LoadScene("RunningScene");
+            PlayerData playerData = new PlayerData();
+            playerData.charName = "externalName";
+
+            PlayerData loadedData = LoadMyData("Assets/Sources/characterInfo.json");
+
+            //New record
+            if (loadedData.coins < numOfCollectedCoins)
+            {
+                playerData.coins = numOfCollectedCoins;
+                SaveMyData(playerData);
+                SceneManager.LoadScene("RunningScene");
+            }
+            else
+            {
+                playerData.coins = loadedData.coins;
+                SaveMyData(playerData);
+                SceneManager.LoadScene("RunningScene");
+            }
         }
     }
 
@@ -133,5 +154,18 @@ public class PlayerController : MonoBehaviour
         {
             Application.Quit();
         }
+    }
+
+    public void SaveMyData(PlayerData data)
+    {
+        string jsonString = JsonUtility.ToJson(data);
+        File.WriteAllText("Assets/Sources/characterInfo.json", jsonString);
+    }
+
+    public PlayerData LoadMyData(string pathToDataFile)
+    {
+        string jsonString = File.ReadAllText(pathToDataFile);
+        PlayerData playerData = JsonUtility.FromJson<PlayerData>(jsonString);
+        return playerData;
     }
 }
