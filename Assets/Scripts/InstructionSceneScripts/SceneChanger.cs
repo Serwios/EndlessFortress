@@ -5,14 +5,17 @@ using System.Threading;
 using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
-public class SceneChanger : MonoBehaviour {
-	public float timeStart = 5;
+public class SceneChanger : MonoBehaviour
+{
+    public float timeStart = 5;
 
-    void Update() {
-    	timeStart -= Time.deltaTime;
+    void Update()
+    {
+        timeStart -= Time.deltaTime;
 
-    	if (Mathf.Round(timeStart) == 0){
-    		SceneManager.LoadScene("RunningScene");
-    	}
+        if (Mathf.Round(timeStart) == 0 || Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene("RunningScene");
+        }
     }
 }
