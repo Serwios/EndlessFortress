@@ -34,12 +34,14 @@ public class PlayerController : MonoBehaviour
     private bool isTouchingCoin;
 
     public static int numOfCollectedCoins;
-    public static int coinRecord;
-    public Text recordText;
-    public float timeStart = 5;
+
+    private Vector3 fp;
+    private Vector3 lp;
+    private float dragDistance;
 
     void Start()
     {
+        dragDistance = Screen.height * 15 / 100;
         numOfCollectedCoins = 0;
 
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -49,14 +51,49 @@ public class PlayerController : MonoBehaviour
 
     void Update()
     {
-        checkPossibilityToJump();
-        checkPossibilityToDash();
+        moveCharacterStraightforward();
+        controllSwipeMoving();
+
         checkPossibilityToDie();
         checkPossibilityToTakeCoin();
         checkPossibilityToExit();
+
+        checkPossibilityToDashForKeyboard();
+        checkPossibilityToJumpForKeyboard();
     }
 
-    private void checkPossibilityToDash()
+    private void moveCharacterStraightforward()
+    {
+        grounded = Physics2D.IsTouchingLayers(myCollider, whatIsGround);
+        myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
+    }
+
+    private void checkPossibilityToDashForKeyboard()
+    {
+        dashForKeyboard();
+        CheckDash();
+
+        myAnimator.SetFloat("Speed", myRigidbody.velocity.x);
+        myAnimator.SetBool("Grounded", grounded);
+    }
+
+    private void checkPossibilityToJumpForKeyboard()
+    {
+        grounded = Physics2D.IsTouchingLayers(myCollider, whatIsGround);
+
+        if (Input.GetKeyDown(KeyCode.Space))
+        {
+            if (grounded)
+            {
+                myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
+            }
+        }
+
+        myAnimator.SetFloat("Speed", myRigidbody.velocity.x);
+        myAnimator.SetBool("Grounded", grounded);
+    }
+
+    private void dashForKeyboard()
     {
         if (Input.GetButtonDown("Dash"))
         {
@@ -65,8 +102,66 @@ public class PlayerController : MonoBehaviour
                 AttemptToDash();
             }
         }
+    }
+
+    private void controllSwipeMoving()
+    {
+        if (Input.touchCount == 1)
+        {
+            Touch touch = Input.GetTouch(0);
+            if (touch.phase == TouchPhase.Began)
+            {
+                fp = touch.position;
+                lp = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Moved)
+            {
+                lp = touch.position;
+            }
+            else if (touch.phase == TouchPhase.Ended)
+            {
+                lp = touch.position;
+
+                if (Mathf.Abs(lp.x - fp.x) > dragDistance || Mathf.Abs(lp.y - fp.y) > dragDistance)
+                {
+                    if (Mathf.Abs(lp.x - fp.x) > Mathf.Abs(lp.y - fp.y))
+                    {
+                        if ((lp.x > fp.x))
+                        {
+                            if (Time.time >= (lastDash + dashCoolDown))
+                            {
+                                AttemptToDash();
+                            }
+
+                        }
+                        else
+                        {
+                            //Left swipe
+                        }
+                    }
+                    else
+                    {
+                        if (lp.y > fp.y)
+                        {
+                            //Up swipe 
+                        }
+                        else
+                        {
+                            //Down swipe
+                        }
+                    }
+                }
+                else
+                {
+                    //Tap
+                    makeJumpTheCharacter();
+                }
+            }
+        }
 
         CheckDash();
+        myAnimator.SetFloat("Speed", myRigidbody.velocity.x);
+        myAnimator.SetBool("Grounded", grounded);
     }
 
     private void CheckDash()
@@ -93,16 +188,14 @@ public class PlayerController : MonoBehaviour
         lastDash = Time.time;
     }
 
-    private void checkPossibilityToJump()
+    private void makeJumpTheCharacter()
     {
         grounded = Physics2D.IsTouchingLayers(myCollider, whatIsGround);
         myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
-        if (Input.GetKeyDown(KeyCode.Space) || Input.GetMouseButtonDown(0))
+
+        if (grounded)
         {
-            if (grounded)
-            {
-                myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
-            }
+            myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpForce);
         }
 
         myAnimator.SetFloat("Speed", myRigidbody.velocity.x);
