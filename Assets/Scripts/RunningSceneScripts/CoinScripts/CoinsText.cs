@@ -1,10 +1,11 @@
 using UnityEngine;
 using UnityEngine.UI;
-
+/* 
+    @coinstText - text UI for visualisation
+*/
 public class CoinsText : MonoBehaviour
 {
     public Text coinsText;
-    public static int coins;
 
     void Update()
     {
