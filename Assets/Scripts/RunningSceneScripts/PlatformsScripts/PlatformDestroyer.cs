@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 /*
     You should add destroyer script to each prefab/generated object for correct work
+    TODO: Rename to object destroyer
 */
 public class PlatformDestroyer : MonoBehaviour
 {

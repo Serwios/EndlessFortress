@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    public float moveSpeed;
+    private float moveSpeed = 10;
     public float jumpForce;
 
     private Rigidbody2D myRigidbody;
@@ -17,6 +17,7 @@ public class PlayerController : MonoBehaviour
     public bool grounded;
     public LayerMask whatIsGround;
     public LayerMask coinLayer;
+    public LayerMask redCrystalLayer;
 
     private Collider2D myCollider;
 
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
 
         checkPossibilityToDie();
         checkPossibilityToTakeCoin();
+        checkPossibilityToTakeCrystal();
         checkPossibilityToExit();
 
         checkPossibilityToDashForKeyboard();
@@ -130,6 +132,7 @@ public class PlayerController : MonoBehaviour
                         {
                             if (Time.time >= (lastDash + dashCoolDown))
                             {
+                                //Right Swipe
                                 AttemptToDash();
                             }
 
@@ -237,8 +240,19 @@ public class PlayerController : MonoBehaviour
         {
             numOfCollectedCoins++;
         }
+    }
 
-        //Debug.Log("numOfCoins: " + numOfCollectedCoins);
+    private void checkPossibilityToTakeCrystal()
+    {
+        if (Physics2D.IsTouchingLayers(myCollider, redCrystalLayer))
+        {
+            moveSpeed *= 2;
+            myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
+        }
+
+        //else if (Physics2D.IsTouchingLayers(myCollider, greenCrystalLayer) {
+        //
+        //}
     }
 
     private void checkPossibilityToExit()

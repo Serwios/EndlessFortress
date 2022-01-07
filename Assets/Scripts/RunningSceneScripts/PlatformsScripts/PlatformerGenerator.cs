@@ -6,6 +6,7 @@ public class PlatformerGenerator : MonoBehaviour
 {
     public List<GameObject> gameObjects = new List<GameObject>();
     public GameObject coinObject;
+    public GameObject redCrystal;
 
     public Transform generationPoint;
     public float distanceBetween;
@@ -19,14 +20,9 @@ public class PlatformerGenerator : MonoBehaviour
     private int randomElementIndex;
     private float absoluteYPosition;
 
-    private float tempdistanceBetweenMax;
-    private float tempdistanceBetweenMin;
-
     private float LOWER_Y_BORDER = -5.2F;
     private float HIGHER_Y_BORDER = 2.3F;
-
-    private int randomPossilityToCreateCoin;
-    private int oddsOfCreation = 3;
+    private int oddsOfCreation;
 
     void Start()
     {
@@ -46,7 +42,7 @@ public class PlatformerGenerator : MonoBehaviour
             GameObject randomlySelectedObject = gameObjects[randomElementIndex];
             distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
 
-            //potentionally infinite loop
+            //Potentionally infinite loop
             do
             {
                 randomYKoef = (float)Random.Range(-0.5f, 0.5f);
@@ -60,9 +56,17 @@ public class PlatformerGenerator : MonoBehaviour
 
             Instantiate(randomlySelectedObject, transform.position, transform.rotation);
 
-            if (randomElementIndex == oddsOfCreation)
+            oddsOfCreation = Random.Range(0, 100);
+
+            if (oddsOfCreation <= 5)
+            {
+                Instantiate(redCrystal, transform.position, transform.rotation);
+                return;
+            }
+            else if (oddsOfCreation <= 25)
             {
                 Instantiate(coinObject, transform.position, transform.rotation);
+                return;
             }
         }
     }
