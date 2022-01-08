@@ -9,7 +9,7 @@ using UnityEngine.UI;
 
 public class PlayerController : MonoBehaviour
 {
-    private float moveSpeed = 10;
+    private float moveSpeed;
     public float jumpForce;
 
     private Rigidbody2D myRigidbody;
@@ -39,11 +39,14 @@ public class PlayerController : MonoBehaviour
     private Vector3 fp;
     private Vector3 lp;
     private float dragDistance;
+    private float timeStart = 3;
+    private bool flagRedCrystalIsTaken = false;
 
     void Start()
     {
         dragDistance = Screen.height * 15 / 100;
         numOfCollectedCoins = 0;
+        moveSpeed = 10;
 
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
@@ -57,11 +60,13 @@ public class PlayerController : MonoBehaviour
 
         checkPossibilityToDie();
         checkPossibilityToTakeCoin();
-        checkPossibilityToTakeCrystal();
+        checkPossibilityToTakeRedCrystal();
         checkPossibilityToExit();
 
         checkPossibilityToDashForKeyboard();
         checkPossibilityToJumpForKeyboard();
+
+        checkIfReDCrystalIsTaken();
     }
 
     private void moveCharacterStraightforward()
@@ -242,17 +247,46 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void checkPossibilityToTakeCrystal()
+    private void checkPossibilityToTakeRedCrystal()
     {
         if (Physics2D.IsTouchingLayers(myCollider, redCrystalLayer))
         {
-            moveSpeed *= 2;
-            myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
+            //If after collision is default speed
+            if (moveSpeed < 20)
+            {
+                moveSpeed *= 2;
+                myRigidbody.velocity = new Vector2(moveSpeed, myRigidbody.velocity.y);
+                flagRedCrystalIsTaken = true;
+            }
+            //If after collision character is high speed
+            else if (moveSpeed == 20)
+            {
+                timeStart = 3;
+            }
         }
 
-        //else if (Physics2D.IsTouchingLayers(myCollider, greenCrystalLayer) {
-        //
-        //}
+        //If time after taking is over
+        if (timeStart == 0)
+        {
+            moveSpeed /= 2;
+            timeStart = 3;
+            flagRedCrystalIsTaken = false;
+        }
+
+        Debug.Log("Time " + timeStart);
+    }
+
+    private void checkIfReDCrystalIsTaken()
+    {
+        if (flagRedCrystalIsTaken == true)
+        {
+            timeStart -= Time.deltaTime;
+            if (timeStart <= 0)
+            {
+                timeStart = 0;
+                return;
+            }
+        }
     }
 
     private void checkPossibilityToExit()
