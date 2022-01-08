@@ -5,13 +5,13 @@ using UnityEngine;
 public class CoinController : MonoBehaviour
 {
     private bool isTouchingPlayer;
-    private Collider2D myCollider;
+    private BoxCollider2D myCollider;
 
     public LayerMask playerLayer;
 
     void Start()
     {
-        myCollider = GetComponent<Collider2D>();
+        myCollider = GetComponent<BoxCollider2D>();
     }
 
     void Update()
@@ -22,6 +22,7 @@ public class CoinController : MonoBehaviour
     private void checkIfPlayerTouching()
     {
         isTouchingPlayer = Physics2D.IsTouchingLayers(myCollider, playerLayer);
+
         if (isTouchingPlayer)
         {
             Destroy(gameObject);
