@@ -274,6 +274,7 @@ public class PlayerController : MonoBehaviour
             {
                 timeStart = 3;
             }
+
         }
 
         //If time after taking is over

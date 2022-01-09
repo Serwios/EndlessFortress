@@ -13,7 +13,7 @@ public class SceneChanger : MonoBehaviour
     {
         timeStart -= Time.deltaTime;
 
-        if (Mathf.Round(timeStart) == 0 || Input.GetKeyDown(KeyCode.Space))
+        if (Mathf.Round(timeStart) == 0 || Input.GetKeyDown(KeyCode.Space) || Input.touchCount == 1)
         {
             SceneManager.LoadScene("RunningScene");
         }
