@@ -7,6 +7,8 @@ public class PlatformerGenerator : MonoBehaviour
     public List<GameObject> gameObjects = new List<GameObject>();
     public GameObject coinObject;
     public GameObject redCrystal;
+    public GameObject goldenCrystal;
+    public GameObject greenLifeCrystal;
 
     public Transform generationPoint;
     public float distanceBetween;
@@ -58,7 +60,17 @@ public class PlatformerGenerator : MonoBehaviour
 
             oddsOfCreation = Random.Range(0, 100);
 
-            if (oddsOfCreation <= 5)
+            if (oddsOfCreation <= 2)
+            {
+                Instantiate(goldenCrystal, transform.position, transform.rotation);
+                return;
+            }
+            else if (oddsOfCreation <= 10)
+            {
+                Instantiate(greenLifeCrystal, transform.position, transform.rotation);
+                return;
+            }
+            else if (oddsOfCreation <= 15)
             {
                 Instantiate(redCrystal, transform.position, transform.rotation);
                 return;

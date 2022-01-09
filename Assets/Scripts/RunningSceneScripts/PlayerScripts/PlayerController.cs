@@ -18,6 +18,8 @@ public class PlayerController : MonoBehaviour
     public LayerMask whatIsGround;
     public LayerMask coinLayer;
     public LayerMask redCrystalLayer;
+    public LayerMask goldenCrystalLayer;
+    public LayerMask greenLifeCrystalLayer;
 
     private Collider2D myCollider;
 
@@ -41,6 +43,7 @@ public class PlayerController : MonoBehaviour
     private float dragDistance;
     private float timeStart = 3;
     private bool flagRedCrystalIsTaken = false;
+    private bool flagGreenLifeCrystalIsTaken = false;
 
     void Start()
     {
@@ -60,7 +63,11 @@ public class PlayerController : MonoBehaviour
 
         checkPossibilityToDie();
         checkPossibilityToTakeCoin();
+
         checkPossibilityToTakeRedCrystal();
+        checkPossibilityToTakeGoldenCrystal();
+        checkPossibilityToTakeGreenLifeCrystal();
+
         checkPossibilityToExit();
 
         checkPossibilityToDashForKeyboard();
@@ -216,6 +223,13 @@ public class PlayerController : MonoBehaviour
 
         if (playerPosition.y < -12.5)
         {
+            if (flagGreenLifeCrystalIsTaken)
+            {
+                transform.position = new Vector3(transform.position.x, 2.3f);
+                flagGreenLifeCrystalIsTaken = false;
+                return;
+            }
+
             PlayerData playerData = new PlayerData();
             playerData.charName = "externalName";
 
@@ -274,6 +288,22 @@ public class PlayerController : MonoBehaviour
         }
 
         Debug.Log("Time " + timeStart);
+    }
+
+    private void checkPossibilityToTakeGoldenCrystal()
+    {
+        if (Physics2D.IsTouchingLayers(myCollider, goldenCrystalLayer))
+        {
+            numOfCollectedCoins += 10;
+        }
+    }
+
+    private void checkPossibilityToTakeGreenLifeCrystal()
+    {
+        if (Physics2D.IsTouchingLayers(myCollider, greenLifeCrystalLayer))
+        {
+            flagGreenLifeCrystalIsTaken = true;
+        }
     }
 
     private void checkIfReDCrystalIsTaken()
