@@ -11,22 +11,15 @@ public class CoinRecordText : MonoBehaviour
 {
     public Text recordText;
     private PlayerData loadedData;
+    private int coins;
 
     void Start()
     {
-        string path = Application.streamingAssetsPath + "/characterInfo.json";
-        loadedData = LoadMyData(path);
+        coins = PlayerPrefs.GetInt("coins") != null ? PlayerPrefs.GetInt("coins") : 0;
     }
 
     void Update()
     {
-        recordText.text = "Record: " + loadedData.coins.ToString();
-    }
-
-    public PlayerData LoadMyData(string pathToDataFile)
-    {
-        string jsonString = File.ReadAllText(pathToDataFile);
-        PlayerData playerData = JsonUtility.FromJson<PlayerData>(jsonString);
-        return playerData;
+        recordText.text = "Record: " + coins.ToString();
     }
 }

@@ -13,7 +13,7 @@ public class WelcomeTextConstants
             "In this game is only one pillar!",
             "So, do you decided to go back here?",
             "It was a nice run!",
-            "Be more calmer. It`s just a game",
+            "Be calmer. It`s just a game",
             "I hope you play it by using phone"
     };
 }

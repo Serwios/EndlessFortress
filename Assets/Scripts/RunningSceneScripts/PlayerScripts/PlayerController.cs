@@ -230,23 +230,20 @@ public class PlayerController : MonoBehaviour
                 return;
             }
 
-            PlayerData playerData = new PlayerData();
-            playerData.charName = "externalName";
 
-            string path = Application.streamingAssetsPath + "/characterInfo.json";
-            PlayerData loadedData = LoadMyData(path);
+            int coins = PlayerPrefs.GetInt("coins") != null ? PlayerPrefs.GetInt("coins") : 0;
 
             //New record
-            if (loadedData.coins < numOfCollectedCoins)
+            if (coins < numOfCollectedCoins)
             {
-                playerData.coins = numOfCollectedCoins;
-                SaveMyData(playerData);
+                coins = numOfCollectedCoins;
+                PlayerPrefs.SetInt("coins", coins);
                 SceneManager.LoadScene("RunningScene");
             }
             else
             {
-                playerData.coins = loadedData.coins;
-                SaveMyData(playerData);
+                coins = PlayerPrefs.GetInt("coins");
+                PlayerPrefs.SetInt("coins", coins);
                 SceneManager.LoadScene("RunningScene");
             }
         }
@@ -325,19 +322,5 @@ public class PlayerController : MonoBehaviour
         {
             Application.Quit();
         }
-    }
-
-    public void SaveMyData(PlayerData data)
-    {
-        string jsonString = JsonUtility.ToJson(data);
-        string path = Application.streamingAssetsPath + "/characterInfo.json";
-        File.WriteAllText(path, jsonString);
-    }
-
-    public PlayerData LoadMyData(string pathToDataFile)
-    {
-        string jsonString = File.ReadAllText(pathToDataFile);
-        PlayerData playerData = JsonUtility.FromJson<PlayerData>(jsonString);
-        return playerData;
     }
 }
