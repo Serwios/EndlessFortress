@@ -18,7 +18,6 @@ public class PlatformerGenerator : MonoBehaviour
     public float distanceBetweenMax;
 
     private float randomYKoef;
-    private System.Random random = new System.Random();
     private int randomElementIndex;
     private float absoluteYPosition;
 
