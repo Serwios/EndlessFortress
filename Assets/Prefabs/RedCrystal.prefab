@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 7237041079105239085}
   - component: {fileID: 7237041079105239084}
   - component: {fileID: 7237041079105239083}
-  - component: {fileID: 7351534219467372234}
-  - component: {fileID: -7170703624115609014}
   - component: {fileID: 7041458987910292486}
+  - component: {fileID: 5767402756738916466}
+  - component: {fileID: 1720737385796689061}
   m_Layer: 11
   m_Name: RedCrystal
   m_TagString: Untagged
@@ -105,33 +105,6 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
---- !u!114 &7351534219467372234
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7237041079105239082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc8f6775d249021428df12249f452f03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &-7170703624115609014
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7237041079105239082}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2cc0ea6d690b341a7dac499700c66b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 512
 --- !u!61 &7041458987910292486
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -158,3 +131,30 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.25172812, y: 0.49627507}
   m_EdgeRadius: 0
+--- !u!114 &5767402756738916466
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7237041079105239082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1437d65ad819be249abb652914929c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &1720737385796689061
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 7237041079105239082}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8617c726a6bd6024286411c367a3ca43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512

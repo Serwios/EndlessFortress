@@ -6,11 +6,12 @@ using System.Runtime.Serialization.Formatters.Binary;
 using System.Runtime.Serialization;
 using System.IO;
 using UnityEngine.UI;
-
+/*
+    @recordText - recordText UI for visualisation
+*/
 public class CoinRecordText : MonoBehaviour
 {
     public Text recordText;
-    private PlayerData loadedData;
     private int coins;
 
     void Start()

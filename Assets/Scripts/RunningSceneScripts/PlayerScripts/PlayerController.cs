@@ -7,6 +7,7 @@ using System.Runtime.Serialization;
 using System.IO;
 using UnityEngine.UI;
 
+//This script describe player behaviour with environment and themselve.
 public class PlayerController : MonoBehaviour
 {
     private float moveSpeed;
@@ -41,8 +42,8 @@ public class PlayerController : MonoBehaviour
     private Vector3 fp;
     private Vector3 lp;
     private float dragDistance;
-    private float timeStart = 3;
-    private bool flagRedCrystalIsTaken = false;
+    public static float timeStart;
+    public static bool flagRedCrystalIsTaken = false;
     private bool flagGreenLifeCrystalIsTaken = false;
 
     void Start()
@@ -50,6 +51,7 @@ public class PlayerController : MonoBehaviour
         dragDistance = Screen.height * 15 / 100;
         numOfCollectedCoins = 0;
         moveSpeed = 10;
+        timeStart = 3;
 
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
@@ -73,7 +75,7 @@ public class PlayerController : MonoBehaviour
         checkPossibilityToDashForKeyboard();
         checkPossibilityToJumpForKeyboard();
 
-        checkIfReDCrystalIsTaken();
+        startTimerIfRedCrystalIsTaken();
     }
 
     private void moveCharacterStraightforward()
@@ -229,22 +231,28 @@ public class PlayerController : MonoBehaviour
                 flagGreenLifeCrystalIsTaken = false;
                 return;
             }
-
-
-            int coins = PlayerPrefs.GetInt("coins") != null ? PlayerPrefs.GetInt("coins") : 0;
-
-            //New record
-            if (coins < numOfCollectedCoins)
+            else if (flagRedCrystalIsTaken)
             {
-                coins = numOfCollectedCoins;
-                PlayerPrefs.SetInt("coins", coins);
-                SceneManager.LoadScene("RunningScene");
+                timeStart = 3;
+                flagRedCrystalIsTaken = false;
             }
             else
             {
-                coins = PlayerPrefs.GetInt("coins");
-                PlayerPrefs.SetInt("coins", coins);
-                SceneManager.LoadScene("RunningScene");
+                int coins = PlayerPrefs.GetInt("coins") != null ? PlayerPrefs.GetInt("coins") : 0;
+
+                //new record
+                if (coins < numOfCollectedCoins)
+                {
+                    coins = numOfCollectedCoins;
+                    PlayerPrefs.SetInt("coins", coins);
+                    SceneManager.LoadScene("RunningScene");
+                }
+                else
+                {
+                    coins = PlayerPrefs.GetInt("coins");
+                    PlayerPrefs.SetInt("coins", coins);
+                    SceneManager.LoadScene("RunningScene");
+                }
             }
         }
     }
@@ -285,6 +293,7 @@ public class PlayerController : MonoBehaviour
             flagRedCrystalIsTaken = false;
         }
 
+
         Debug.Log("Time " + timeStart);
     }
 
@@ -304,7 +313,7 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void checkIfReDCrystalIsTaken()
+    private void startTimerIfRedCrystalIsTaken()
     {
         if (flagRedCrystalIsTaken == true)
         {
@@ -312,6 +321,7 @@ public class PlayerController : MonoBehaviour
             if (timeStart <= 0)
             {
                 timeStart = 0;
+                flagRedCrystalIsTaken = false;
                 return;
             }
         }

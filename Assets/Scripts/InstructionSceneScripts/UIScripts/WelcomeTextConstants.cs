@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+
 public class WelcomeTextConstants
 {
     public static List<string> welcomeTextsList = new List<string>{

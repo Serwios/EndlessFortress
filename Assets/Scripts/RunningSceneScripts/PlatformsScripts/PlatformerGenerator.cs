@@ -43,7 +43,6 @@ public class PlatformerGenerator : MonoBehaviour
             GameObject randomlySelectedObject = gameObjects[randomElementIndex];
             distanceBetween = Random.Range(distanceBetweenMin, distanceBetweenMax);
 
-            //Potentionally infinite loop
             do
             {
                 randomYKoef = (float)Random.Range(-0.5f, 0.5f);
@@ -57,28 +56,33 @@ public class PlatformerGenerator : MonoBehaviour
 
             Instantiate(randomlySelectedObject, transform.position, transform.rotation);
 
-            oddsOfCreation = Random.Range(0, 100);
+            createRandomObjectOnPlatform();
+        }
+    }
 
-            if (oddsOfCreation <= 2)
-            {
-                Instantiate(goldenCrystal, transform.position, transform.rotation);
-                return;
-            }
-            else if (oddsOfCreation <= 10)
-            {
-                Instantiate(greenLifeCrystal, transform.position, transform.rotation);
-                return;
-            }
-            else if (oddsOfCreation <= 15)
-            {
-                Instantiate(redCrystal, transform.position, transform.rotation);
-                return;
-            }
-            else if (oddsOfCreation <= 25)
-            {
-                Instantiate(coinObject, transform.position, transform.rotation);
-                return;
-            }
+    private void createRandomObjectOnPlatform()
+    {
+        oddsOfCreation = Random.Range(0, 100);
+
+        if (oddsOfCreation <= 2)
+        {
+            Instantiate(goldenCrystal, transform.position, transform.rotation);
+            return;
+        }
+        else if (oddsOfCreation <= 10)
+        {
+            Instantiate(greenLifeCrystal, transform.position, transform.rotation);
+            return;
+        }
+        else if (oddsOfCreation <= 15)
+        {
+            Instantiate(redCrystal, transform.position, transform.rotation);
+            return;
+        }
+        else if (oddsOfCreation <= 25)
+        {
+            Instantiate(coinObject, transform.position, transform.rotation);
+            return;
         }
     }
 

@@ -91,7 +91,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 6517126832398995431}
-  - component: {fileID: 1845635464902893980}
+  - component: {fileID: 8356022844991736971}
   m_Layer: 0
   m_Name: Torch
   m_TagString: Untagged
@@ -115,7 +115,7 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1845635464902893980
+--- !u!114 &8356022844991736971
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -124,10 +124,9 @@ MonoBehaviour:
   m_GameObject: {fileID: 6517126832398995430}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc8f6775d249021428df12249f452f03, type: 3}
+  m_Script: {fileID: 11500000, guid: 1437d65ad819be249abb652914929c2e, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  platformDestructionPoint: {fileID: 6517126832398995430}
 --- !u!1 &6517126832685502771
 GameObject:
   m_ObjectHideFlags: 0

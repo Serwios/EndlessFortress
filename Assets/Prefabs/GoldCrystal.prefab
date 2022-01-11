@@ -11,9 +11,9 @@ GameObject:
   - component: {fileID: 705133386172610535}
   - component: {fileID: 6791285986762654226}
   - component: {fileID: 5881055478801568944}
-  - component: {fileID: 7101611148065235945}
-  - component: {fileID: -2426399203815797618}
   - component: {fileID: 8285097407025731619}
+  - component: {fileID: 183855699161971452}
+  - component: {fileID: 6124178094832964968}
   m_Layer: 12
   m_Name: GoldCrystal
   m_TagString: Untagged
@@ -112,33 +112,6 @@ BoxCollider2D:
   serializedVersion: 2
   m_Size: {x: 0.24099202, y: 0.47312868}
   m_EdgeRadius: 0
---- !u!114 &7101611148065235945
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8255319856436292822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 6f2cc0ea6d690b341a7dac499700c66b, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  playerLayer:
-    serializedVersion: 2
-    m_Bits: 512
---- !u!114 &-2426399203815797618
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8255319856436292822}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cc8f6775d249021428df12249f452f03, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!95 &8285097407025731619
 Animator:
   serializedVersion: 3
@@ -158,3 +131,30 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &183855699161971452
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8255319856436292822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8617c726a6bd6024286411c367a3ca43, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  playerLayer:
+    serializedVersion: 2
+    m_Bits: 512
+--- !u!114 &6124178094832964968
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8255319856436292822}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1437d65ad819be249abb652914929c2e, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
