@@ -294,7 +294,7 @@ public class PlayerController : MonoBehaviour
         }
 
 
-        Debug.Log("Time " + timeStart);
+        //Debug.Log("Time " + timeStart);
     }
 
     private void checkPossibilityToTakeGoldenCrystal()
