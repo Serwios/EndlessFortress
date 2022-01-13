@@ -67,6 +67,7 @@ public class PlayerController : MonoBehaviour
         checkPossibilityToDie();
         checkPossibilityToTakeCoin();
 
+        //we can off this methods using currentScene statement for hell
         checkPossibilityToTakeRedCrystal();
         checkPossibilityToTakeGoldenCrystal();
         checkPossibilityToTakeGreenLifeCrystal();
@@ -319,6 +320,7 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.IsTouchingLayers(myCollider, hellCrystalLayer))
         {
+            flagRedCrystalIsTaken = false;
             SceneManager.LoadScene(SceneNamesScript.hellScene);
         }
     }
