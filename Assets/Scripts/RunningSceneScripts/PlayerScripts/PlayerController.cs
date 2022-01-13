@@ -21,6 +21,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask redCrystalLayer;
     public LayerMask goldenCrystalLayer;
     public LayerMask greenLifeCrystalLayer;
+    public LayerMask hellCrystalLayer;
 
     private Collider2D myCollider;
 
@@ -69,6 +70,7 @@ public class PlayerController : MonoBehaviour
         checkPossibilityToTakeRedCrystal();
         checkPossibilityToTakeGoldenCrystal();
         checkPossibilityToTakeGreenLifeCrystal();
+        checkPossibilityToTakeHellCrystal();
 
         checkPossibilityToExit();
 
@@ -245,13 +247,13 @@ public class PlayerController : MonoBehaviour
                 {
                     coins = numOfCollectedCoins;
                     PlayerPrefs.SetInt("coins", coins);
-                    SceneManager.LoadScene("RunningScene");
+                    SceneManager.LoadScene(SceneNamesScript.castleScene);
                 }
                 else
                 {
                     coins = PlayerPrefs.GetInt("coins");
                     PlayerPrefs.SetInt("coins", coins);
-                    SceneManager.LoadScene("RunningScene");
+                    SceneManager.LoadScene(SceneNamesScript.castleScene);
                 }
             }
         }
@@ -310,6 +312,14 @@ public class PlayerController : MonoBehaviour
         if (Physics2D.IsTouchingLayers(myCollider, greenLifeCrystalLayer))
         {
             flagGreenLifeCrystalIsTaken = true;
+        }
+    }
+
+    private void checkPossibilityToTakeHellCrystal()
+    {
+        if (Physics2D.IsTouchingLayers(myCollider, hellCrystalLayer))
+        {
+            SceneManager.LoadScene(SceneNamesScript.hellScene);
         }
     }
 

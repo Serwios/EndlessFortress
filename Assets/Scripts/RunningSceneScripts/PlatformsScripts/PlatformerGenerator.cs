@@ -9,6 +9,7 @@ public class PlatformerGenerator : MonoBehaviour
     public GameObject redCrystal;
     public GameObject goldenCrystal;
     public GameObject greenLifeCrystal;
+    public GameObject hellCrystal;
 
     public Transform generationPoint;
     public float distanceBetween;
@@ -24,10 +25,13 @@ public class PlatformerGenerator : MonoBehaviour
     private float LOWER_Y_BORDER = -5.2F;
     private float HIGHER_Y_BORDER = 2.3F;
     private int oddsOfCreation;
+    public static float globalKoef;
 
     void Start()
     {
         platformWidth = gameObjects[0].GetComponent<BoxCollider2D>().size.x;
+        //this variable can controle game hardness
+        globalKoef = 0.5f;
     }
 
     void Update()
@@ -60,26 +64,38 @@ public class PlatformerGenerator : MonoBehaviour
         }
     }
 
+    //This odds system based on pie chart. 
+    //I can`t create a normal readibility system, so decided to take the ratio of pieces to cake.
     private void createRandomObjectOnPlatform()
     {
-        oddsOfCreation = Random.Range(0, 100);
+        oddsOfCreation = Random.Range(0, 1000);
 
-        if (oddsOfCreation <= 2)
+        //5%
+        if (oddsOfCreation <= (50 * globalKoef))
         {
             Instantiate(goldenCrystal, transform.position, transform.rotation);
             return;
         }
-        else if (oddsOfCreation <= 10)
+        //8%
+        else if (oddsOfCreation <= (180 * globalKoef) && PlayerPrefs.GetInt("coins") >= 50)
+        {
+            Instantiate(hellCrystal, transform.position, transform.rotation);
+            return;
+        }
+        //10%
+        else if (oddsOfCreation <= (280 * globalKoef))
         {
             Instantiate(greenLifeCrystal, transform.position, transform.rotation);
             return;
         }
-        else if (oddsOfCreation <= 15)
+        //15%
+        else if (oddsOfCreation <= (430 * globalKoef))
         {
             Instantiate(redCrystal, transform.position, transform.rotation);
             return;
         }
-        else if (oddsOfCreation <= 25)
+        //35%
+        else if (oddsOfCreation <= (780 * globalKoef))
         {
             Instantiate(coinObject, transform.position, transform.rotation);
             return;

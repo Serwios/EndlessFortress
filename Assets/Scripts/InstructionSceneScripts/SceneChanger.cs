@@ -15,7 +15,7 @@ public class SceneChanger : MonoBehaviour
 
         if (Mathf.Round(timeStart) == 0 || Input.GetKeyDown(KeyCode.Space) || Input.touchCount == 1)
         {
-            SceneManager.LoadScene("RunningScene");
+            SceneManager.LoadScene(SceneNamesScript.castleScene);
         }
     }
 }

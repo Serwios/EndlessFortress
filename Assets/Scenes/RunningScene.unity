@@ -959,7 +959,7 @@ MonoBehaviour:
   m_GameObject: {fileID: 519420028}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 398cd7f907b5a8845b48a4b1b1c3915e, type: 3}
+  m_Script: {fileID: 11500000, guid: 3d92b89683d98a946aa416629916c195, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
 --- !u!1 &573382728
@@ -1256,6 +1256,9 @@ MonoBehaviour:
   greenLifeCrystalLayer:
     serializedVersion: 2
     m_Bits: 128
+  hellCrystalLayer:
+    serializedVersion: 2
+    m_Bits: 64
   dashtime: 0.3
   dashSpeed: 22
   dashCoolDown: 1.5
@@ -2429,6 +2432,7 @@ MonoBehaviour:
   redCrystal: {fileID: 7237041079105239082, guid: 2ff196b6c1629494e94611cf6e7fe943, type: 3}
   goldenCrystal: {fileID: 8255319856436292822, guid: ef0e42351a30a5246867105efed52658, type: 3}
   greenLifeCrystal: {fileID: 2678102133897707481, guid: 39480d5b8f20ec3439bc10361d5afc1e, type: 3}
+  hellCrystal: {fileID: 3218344973823271030, guid: 2216774fb5e127c49bfa3cde85e3f7ac, type: 3}
   generationPoint: {fileID: 621417874}
   distanceBetween: 5e+15
   distanceBetweenMin: 3
