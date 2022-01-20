@@ -19,7 +19,7 @@ TagManager:
   - Coin
   - RedCrystal
   - GoldenCrystal
-  - 
+  - CameraCrystalLayer
   - 
   - 
   - 
@@ -39,9 +39,18 @@ TagManager:
   - 
   - 
   m_SortingLayers:
+  - name: Background
+    uniqueID: 1856759663
+    locked: 0
   - name: Default
     uniqueID: 0
     locked: 0
   - name: Player
     uniqueID: 1449067867
+    locked: 0
+  - name: Platform
+    uniqueID: 3421797259
+    locked: 0
+  - name: SuperUI
+    uniqueID: 1630133765
     locked: 0

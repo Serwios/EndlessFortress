@@ -1,6 +1,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 
 public class PlatformerGenerator : MonoBehaviour
 {
@@ -10,6 +11,7 @@ public class PlatformerGenerator : MonoBehaviour
     public GameObject goldenCrystal;
     public GameObject greenLifeCrystal;
     public GameObject hellCrystal;
+    public GameObject cameraCrystal;
 
     public Transform generationPoint;
     public float distanceBetween;
@@ -26,12 +28,14 @@ public class PlatformerGenerator : MonoBehaviour
     private float HIGHER_Y_BORDER = 2.3F;
     private int oddsOfCreation;
     public static float globalKoef;
+    private string scene;
 
     void Start()
     {
         platformWidth = gameObjects[0].GetComponent<BoxCollider2D>().size.x;
         //this variable can controle game hardness
         globalKoef = 0.5f;
+        scene = getCurrentScene();
     }
 
     void Update()
@@ -59,7 +63,6 @@ public class PlatformerGenerator : MonoBehaviour
               transform.position.z);
 
             Instantiate(randomlySelectedObject, transform.position, transform.rotation);
-
             createRandomObjectOnPlatform();
         }
     }
@@ -77,7 +80,7 @@ public class PlatformerGenerator : MonoBehaviour
             return;
         }
         //8%
-        else if (oddsOfCreation <= (130 * globalKoef) && PlayerPrefs.GetInt("coins") >= 50)
+        else if (oddsOfCreation <= (130 * globalKoef) && PlayerPrefs.GetInt("coins") >= 30)
         {
             Instantiate(hellCrystal, transform.position, transform.rotation);
             return;
@@ -100,11 +103,22 @@ public class PlatformerGenerator : MonoBehaviour
             Instantiate(coinObject, transform.position, transform.rotation);
             return;
         }
+        //15%
+        else if (oddsOfCreation <= (930 * globalKoef) && scene == SceneNamesScript.hellScene)
+        {
+            Instantiate(cameraCrystal, transform.position, transform.rotation);
+        }
     }
 
     private bool isPointNotInValidSquare(float absoluteYPosition)
     {
         return absoluteYPosition < LOWER_Y_BORDER ||
                 absoluteYPosition > HIGHER_Y_BORDER;
+    }
+
+    private string getCurrentScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        return currentScene.name;
     }
 }

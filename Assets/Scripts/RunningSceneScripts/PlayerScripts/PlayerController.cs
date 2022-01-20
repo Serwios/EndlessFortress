@@ -10,6 +10,8 @@ using UnityEngine.UI;
 //This script describe player behaviour with environment and themselve.
 public class PlayerController : MonoBehaviour
 {
+
+    public Camera camera;
     private float moveSpeed;
     public float jumpForce;
 
@@ -22,6 +24,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask goldenCrystalLayer;
     public LayerMask greenLifeCrystalLayer;
     public LayerMask hellCrystalLayer;
+    public LayerMask cameraCrystalLayer;
 
     private Collider2D myCollider;
 
@@ -72,6 +75,7 @@ public class PlayerController : MonoBehaviour
         checkPossibilityToTakeGoldenCrystal();
         checkPossibilityToTakeGreenLifeCrystal();
         checkPossibilityToTakeHellCrystal();
+        checkPossibilityToTakeCameraCrystal();
 
         checkPossibilityToExit();
 
@@ -322,6 +326,16 @@ public class PlayerController : MonoBehaviour
         {
             flagRedCrystalIsTaken = false;
             SceneManager.LoadScene(SceneNamesScript.hellScene);
+        }
+    }
+
+    private void checkPossibilityToTakeCameraCrystal()
+    {
+        if (Physics2D.IsTouchingLayers(myCollider, cameraCrystalLayer))
+        {
+            Matrix4x4 mat = Camera.main.projectionMatrix;
+            mat *= Matrix4x4.Scale(new Vector3(-1, 1, 1));
+            Camera.main.projectionMatrix = mat;
         }
     }
 
