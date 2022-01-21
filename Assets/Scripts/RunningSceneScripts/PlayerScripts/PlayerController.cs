@@ -136,8 +136,9 @@ public class PlayerController : MonoBehaviour
             Touch touch = Input.GetTouch(0);
             if (touch.phase == TouchPhase.Began)
             {
+                //First tap
+                makeJumpTheCharacter();
                 fp = touch.position;
-                lp = touch.position;
             }
             else if (touch.phase == TouchPhase.Moved)
             {
@@ -179,8 +180,8 @@ public class PlayerController : MonoBehaviour
                 }
                 else
                 {
-                    //Tap
-                    makeJumpTheCharacter();
+                    //Tap after unpress
+
                 }
             }
         }
