@@ -80,7 +80,7 @@ public class PlatformerGenerator : MonoBehaviour
             return;
         }
         //8%
-        else if (oddsOfCreation <= (130 * globalKoef) && PlayerPrefs.GetInt("coins") >= 30)
+        else if (oddsOfCreation <= (130 * globalKoef) && PlayerPrefs.GetInt("coins") >= 20)
         {
             Instantiate(hellCrystal, transform.position, transform.rotation);
             return;

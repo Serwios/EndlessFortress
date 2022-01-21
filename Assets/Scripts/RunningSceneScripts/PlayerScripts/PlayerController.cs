@@ -49,6 +49,7 @@ public class PlayerController : MonoBehaviour
     public static float timeStart;
     public static bool flagRedCrystalIsTaken = false;
     private bool flagGreenLifeCrystalIsTaken = false;
+    private GameObject canvas;
 
     void Start()
     {
@@ -56,6 +57,7 @@ public class PlayerController : MonoBehaviour
         numOfCollectedCoins = 0;
         moveSpeed = 10;
         timeStart = 3;
+        canvas = GameObject.Find("Canvas");
 
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
@@ -333,6 +335,15 @@ public class PlayerController : MonoBehaviour
     {
         if (Physics2D.IsTouchingLayers(myCollider, cameraCrystalLayer))
         {
+            if (canvas.active)
+            {
+                canvas.active = false;
+            }
+            else
+            {
+                canvas.active = true;
+            }
+
             Matrix4x4 mat = Camera.main.projectionMatrix;
             mat *= Matrix4x4.Scale(new Vector3(-1, 1, 1));
             Camera.main.projectionMatrix = mat;

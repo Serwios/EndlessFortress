@@ -849,6 +849,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34032317faece6d488dcd747b9376c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!1 &416604029 stripped
+GameObject:
+  m_CorrespondingSourceObject: {fileID: 5081754258642306371, guid: 83b9f33f517f36742b8be70b191fbf94, type: 3}
+  m_PrefabInstance: {fileID: 1158076714}
+  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1239,6 +1244,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1786b01859befa4a98617d24c15debe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  Camera: {fileID: 519420031}
+  UICoin: {fileID: 416604029}
   jumpForce: 25
   grounded: 0
   whatIsGround:
@@ -1259,6 +1266,9 @@ MonoBehaviour:
   hellCrystalLayer:
     serializedVersion: 2
     m_Bits: 64
+  cameraCrystalLayer:
+    serializedVersion: 2
+    m_Bits: 0
   dashtime: 0.3
   dashSpeed: 22
   dashCoolDown: 1.5
@@ -1822,7 +1832,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -113.80005, y: 67.099976}
+  m_AnchoredPosition: {x: -113.80005, y: 67.099945}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1082452936
@@ -2433,6 +2443,7 @@ MonoBehaviour:
   goldenCrystal: {fileID: 8255319856436292822, guid: ef0e42351a30a5246867105efed52658, type: 3}
   greenLifeCrystal: {fileID: 2678102133897707481, guid: 39480d5b8f20ec3439bc10361d5afc1e, type: 3}
   hellCrystal: {fileID: 3218344973823271030, guid: 2216774fb5e127c49bfa3cde85e3f7ac, type: 3}
+  cameraCrystal: {fileID: 0}
   generationPoint: {fileID: 621417874}
   distanceBetween: 5e+15
   distanceBetweenMin: 3
