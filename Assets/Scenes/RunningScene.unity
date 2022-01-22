@@ -849,11 +849,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34032317faece6d488dcd747b9376c41, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!1 &416604029 stripped
-GameObject:
-  m_CorrespondingSourceObject: {fileID: 5081754258642306371, guid: 83b9f33f517f36742b8be70b191fbf94, type: 3}
-  m_PrefabInstance: {fileID: 1158076714}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -1244,8 +1239,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: c1786b01859befa4a98617d24c15debe, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  Camera: {fileID: 519420031}
-  UICoin: {fileID: 416604029}
+  camera: {fileID: 0}
   jumpForce: 25
   grounded: 0
   whatIsGround:
@@ -1269,8 +1263,8 @@ MonoBehaviour:
   cameraCrystalLayer:
     serializedVersion: 2
     m_Bits: 0
-  dashtime: 0.3
-  dashSpeed: 22
+  dashtime: 0.38
+  dashSpeed: 25
   dashCoolDown: 1.5
 --- !u!1 &739374345
 GameObject:
