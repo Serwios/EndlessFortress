@@ -48,9 +48,11 @@ public class PlayerController : MonoBehaviour
     private float dragDistance;
     public static float timeStart;
     public static bool flagRedCrystalIsTaken = false;
-    private bool flagGreenLifeCrystalIsTaken = false;
+    public static bool flagGreenLifeCrystalIsTaken = false;
     private GameObject canvas;
     private string scene;
+    private UnityAds ads = new UnityAds();
+    private int oddsOfCreation;
 
     void Start()
     {
@@ -250,6 +252,12 @@ public class PlayerController : MonoBehaviour
             }
             else
             {
+                oddsOfCreation = Random.Range(0, 100);
+                if (oddsOfCreation <= 25)
+                {
+                    ads.ShowInterstitial();
+                }
+
                 int coins = PlayerPrefs.GetInt("coins") != null ? PlayerPrefs.GetInt("coins") : 0;
 
                 //new record
