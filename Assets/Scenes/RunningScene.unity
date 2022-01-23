@@ -1257,9 +1257,9 @@ MonoBehaviour:
   greenLifeCrystalLayer:
     serializedVersion: 2
     m_Bits: 128
-  hellCrystalLayer:
+  dimensionCrystalLayer:
     serializedVersion: 2
-    m_Bits: 64
+    m_Bits: 65536
   cameraCrystalLayer:
     serializedVersion: 2
     m_Bits: 0
@@ -1826,7 +1826,7 @@ RectTransform:
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
   m_AnchorMin: {x: 0, y: 1}
   m_AnchorMax: {x: 0, y: 1}
-  m_AnchoredPosition: {x: -113.80005, y: 67.099945}
+  m_AnchoredPosition: {x: -113.80005, y: 67.099976}
   m_SizeDelta: {x: 200, y: 50}
   m_Pivot: {x: 0.5, y: 0.5}
 --- !u!114 &1082452936
@@ -2436,8 +2436,8 @@ MonoBehaviour:
   redCrystal: {fileID: 7237041079105239082, guid: 2ff196b6c1629494e94611cf6e7fe943, type: 3}
   goldenCrystal: {fileID: 8255319856436292822, guid: ef0e42351a30a5246867105efed52658, type: 3}
   greenLifeCrystal: {fileID: 2678102133897707481, guid: 39480d5b8f20ec3439bc10361d5afc1e, type: 3}
-  hellCrystal: {fileID: 3218344973823271030, guid: 2216774fb5e127c49bfa3cde85e3f7ac, type: 3}
-  cameraCrystal: {fileID: 0}
+  dimensionCrystal: {fileID: 3218344973823271030, guid: 2216774fb5e127c49bfa3cde85e3f7ac, type: 3}
+  cameraCrystal: {fileID: 3321115356113232363, guid: 0381e34b4467c3047a70e2eed470a320, type: 3}
   generationPoint: {fileID: 621417874}
   distanceBetween: 5e+15
   distanceBetweenMin: 3

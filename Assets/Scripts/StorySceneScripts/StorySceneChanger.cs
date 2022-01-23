@@ -7,7 +7,7 @@ using UnityEngine.UI;
 
 public class StorySceneChanger : MonoBehaviour
 {
-    public float timeStart = 15;
+    public float timeStart;
 
     void Update()
     {

@@ -10,7 +10,7 @@ public class PlatformerGenerator : MonoBehaviour
     public GameObject redCrystal;
     public GameObject goldenCrystal;
     public GameObject greenLifeCrystal;
-    public GameObject hellCrystal;
+    public GameObject dimensionCrystal;
     public GameObject cameraCrystal;
 
     public Transform generationPoint;
@@ -82,7 +82,19 @@ public class PlatformerGenerator : MonoBehaviour
         //8%
         else if (oddsOfCreation <= (130 * globalKoef) && PlayerPrefs.GetInt("coins") >= 20)
         {
-            Instantiate(hellCrystal, transform.position, transform.rotation);
+            if (getCurrentScene() == SceneNamesScript.forrestScene && PlayerPrefs.GetInt("coins") >= 40)
+            {
+                Instantiate(dimensionCrystal, transform.position, transform.rotation);
+            }
+            else if (getCurrentScene() == SceneNamesScript.hellScene)
+            {
+                Instantiate(dimensionCrystal, transform.position, transform.rotation);
+            }
+            else if (getCurrentScene() == SceneNamesScript.castleScene)
+            {
+                Instantiate(dimensionCrystal, transform.position, transform.rotation);
+            }
+
             return;
         }
         //15%
@@ -104,7 +116,7 @@ public class PlatformerGenerator : MonoBehaviour
             return;
         }
         //15%
-        else if (oddsOfCreation <= (930 * globalKoef) && scene == SceneNamesScript.hellScene)
+        else if (oddsOfCreation <= (930 * globalKoef) && scene == SceneNamesScript.forrestScene)
         {
             Instantiate(cameraCrystal, transform.position, transform.rotation);
         }

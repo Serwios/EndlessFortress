@@ -23,7 +23,7 @@ public class PlayerController : MonoBehaviour
     public LayerMask redCrystalLayer;
     public LayerMask goldenCrystalLayer;
     public LayerMask greenLifeCrystalLayer;
-    public LayerMask hellCrystalLayer;
+    public LayerMask dimensionCrystalLayer;
     public LayerMask cameraCrystalLayer;
 
     private Collider2D myCollider;
@@ -50,6 +50,7 @@ public class PlayerController : MonoBehaviour
     public static bool flagRedCrystalIsTaken = false;
     private bool flagGreenLifeCrystalIsTaken = false;
     private GameObject canvas;
+    private string scene;
 
     void Start()
     {
@@ -57,7 +58,9 @@ public class PlayerController : MonoBehaviour
         numOfCollectedCoins = 0;
         moveSpeed = 10;
         timeStart = 3;
+
         canvas = GameObject.Find("Canvas");
+        scene = getCurrentScene();
 
         myRigidbody = GetComponent<Rigidbody2D>();
         myCollider = GetComponent<Collider2D>();
@@ -72,11 +75,10 @@ public class PlayerController : MonoBehaviour
         checkPossibilityToDie();
         checkPossibilityToTakeCoin();
 
-        //we can off this methods using currentScene statement for hell
         checkPossibilityToTakeRedCrystal();
         checkPossibilityToTakeGoldenCrystal();
         checkPossibilityToTakeGreenLifeCrystal();
-        checkPossibilityToTakeHellCrystal();
+        checkPossibilityToTakeDimensionCrystal();
         checkPossibilityToTakeCameraCrystal();
 
         checkPossibilityToExit();
@@ -323,12 +325,25 @@ public class PlayerController : MonoBehaviour
         }
     }
 
-    private void checkPossibilityToTakeHellCrystal()
+    private void checkPossibilityToTakeDimensionCrystal()
     {
-        if (Physics2D.IsTouchingLayers(myCollider, hellCrystalLayer))
+        if (Physics2D.IsTouchingLayers(myCollider, dimensionCrystalLayer))
         {
             flagRedCrystalIsTaken = false;
-            SceneManager.LoadScene(SceneNamesScript.hellScene);
+
+            if (scene == SceneNamesScript.castleScene)
+            {
+                SceneManager.LoadScene(SceneNamesScript.forrestScene);
+            }
+            else if (scene == SceneNamesScript.forrestScene)
+            {
+                SceneManager.LoadScene(SceneNamesScript.hellScene);
+            }
+            else if (scene == SceneNamesScript.hellScene)
+            {
+                SceneManager.LoadScene(SceneNamesScript.forrestScene);
+            }
+
         }
     }
 
@@ -371,5 +386,11 @@ public class PlayerController : MonoBehaviour
         {
             Application.Quit();
         }
+    }
+
+    private string getCurrentScene()
+    {
+        Scene currentScene = SceneManager.GetActiveScene();
+        return currentScene.name;
     }
 }

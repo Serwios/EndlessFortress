@@ -197,7 +197,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 46bf00afca32c864ab1c000205166727, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  timeStart: 5
+  timeStart: 12
 --- !u!81 &92400832
 AudioListener:
   m_ObjectHideFlags: 0
@@ -387,6 +387,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 336449085221324743, guid: 4cda86fd97a31aa409bde8de35da469b, type: 3}
+    - {fileID: 8356022844991736971, guid: 4cda86fd97a31aa409bde8de35da469b, type: 3}
   m_SourcePrefab: {fileID: 100100000, guid: 4cda86fd97a31aa409bde8de35da469b, type: 3}
 --- !u!1 &1579033359
 GameObject:
