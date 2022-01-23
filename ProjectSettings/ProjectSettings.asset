@@ -338,7 +338,7 @@ PlayerSettings:
       m_SubKind: 
     - m_Textures:
       - {fileID: 2800000, guid: d67e0bcb6dce9bc429746c2a0f6501ea, type: 3}
-      - {fileID: 2800000, guid: b8abc38c7cad8ca4f9310790bdc5fd48, type: 3}
+      - {fileID: 2800000, guid: d249a26dacb016b448830624fa9b4ddb, type: 3}
       m_Width: 432
       m_Height: 432
       m_Kind: 2
